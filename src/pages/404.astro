@@ -1,0 +1,16 @@
+---
+import BlockRenderer from "../components/BlockRenderer.astro";
+import CommonHead from "../components/CommonHead.astro";
+
+const {seo, blocks} = Astro.props;
+---
+<html lang="en">
+  <CommonHead title="Not Found" description="" />
+  <body class="bg-event-horizon text-white">
+    <div class="text-center flex flex-col justify-center min-h-screen gap-3">
+      <h1>Oops!</h1>
+      <h2>Page not found!</h2>
+      <a href="/" class="text-blast-off block rounded-md p-3 hover:opacity-80">Go back to the homepage!</a>
+    </div>
+  </body>
+</html>
