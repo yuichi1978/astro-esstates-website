@@ -1,4 +1,5 @@
 ---
+import ContactForm7 from "./ContactForm7.tsx";
 import BlockRendererInner from "./BlockRenderer.astro";
 import Button from "./Button.astro";
 import { getBlockStyling } from "@wp-block-tools/styles";
@@ -25,15 +26,23 @@ const { blocks, postId } = Astro.props;
     const { styles, classes } = getBlockStyling(block);
 
     switch (block.name) {
+      case "contact-form-7/contact-form-selector":
+        return (
+          <ContactForm7
+            client:only="react"
+            formId={block.attributes?.id}
+            formMarkup={block.attributes?.formMarkup}
+          />
+        );
       case "astroestates/property-search":
         return <PropertySearch />;
       case "astroestates/property-details":
         return (
           <PropertyDetails
-          price={block.attributes?.price}
-          bedrooms={block.attributes?.bedrooms}
-          bathrooms={block.attributes?.bathrooms}
-          postId={postId}
+            price={block.attributes?.price}
+            bedrooms={block.attributes?.bedrooms}
+            bathrooms={block.attributes?.bathrooms}
+            postId={postId}
           />
         );
       case "core/gallery":
@@ -79,7 +88,7 @@ const { blocks, postId } = Astro.props;
       case "core/heading":
         return (
           <Heading
-          transitionName={
+            transitionName={
               block.name === "core/post-title" ? `post-title-${postId}` : ""
             }
             level={block.attributes?.level || 2}

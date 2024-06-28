@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import { loadEnv } from "vite";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
+import robotsTxt from "astro-robots-txt";
 const {
   PUBLIC_WP_URL
 } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
@@ -15,7 +16,7 @@ export default defineConfig({
   },
   integrations: [tailwind({
     applyBaseStyles: false
-  }), react()],
+  }), react(), robotsTxt()],
   output: "hybrid",
   adapter: vercel()
 });
